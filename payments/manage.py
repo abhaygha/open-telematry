@@ -3,10 +3,6 @@ import os
 os.environ['DJANGO_SETTINGS_MODULE'] = 'payments.settings'
 from opentelemetry.instrumentation.django import DjangoInstrumentor
 DjangoInstrumentor().instrument()
-from opentelemetry import trace
-tracer = trace.get_tracer(__name__)
-with tracer.start_as_current_span("startup-span"):
-    pass
 import sys
 
 def main():
