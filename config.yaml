@@ -62,6 +62,12 @@ exporters:
       insecure: true
 
 service:
+  telemetry:
+    logs:
+      level: "debug"
+    metrics:
+      level: "detailed"
+      address: "0.0.0.0:8890"
   pipelines:
     traces:
       receivers: [otlp, opencensus, jaeger, zipkin]
@@ -76,6 +82,3 @@ service:
       processors: [batch]
       exporters: [debug]
   extensions: [health_check, pprof, zpages]
-  telemetry:
-    metrics:
-      address: "0.0.0.0:8890"
