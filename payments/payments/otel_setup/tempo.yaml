@@ -1,0 +1,29 @@
+server:
+  http_listen_port: 3200  # HTTP API for Tempo
+  grpc_listen_port: 5000  # gRPC API for Tempo
+  grpc_server_max_recv_msg_size: 16777216  # 16 MB
+  grpc_server_max_send_msg_size: 16777216  # 16 MB
+
+ingester:
+  trace_idle_period: 1s
+  max_block_bytes: 8_000_000
+  max_block_duration: 3s
+
+storage:
+  trace:
+    backend: local
+    local:
+      path: /var/tempo/traces
+
+distributor:
+  receivers:
+    otlp:
+      protocols:
+        http:
+          endpoint: 0.0.0.0:3100  # Port for HTTP ingestion
+
+  log_received_spans:
+    enabled: true
+    include_all_attributes: true  # Optionally include all attributes in the log
+    filter_by_status_error: false  # Log all spans, not just those with errors
+  

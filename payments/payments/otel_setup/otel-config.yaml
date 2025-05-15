@@ -1,0 +1,38 @@
+receivers:
+  otlp:
+    protocols:
+      grpc:    # Enable gRPC on port 4317
+        endpoint: 0.0.0.0:4317
+      http:    # Enable HTTP on port 4318
+        endpoint: 0.0.0.0:4318
+
+processors:
+  batch:
+
+exporters:
+  prometheus:
+    endpoint: "0.0.0.0:8889"
+
+  otlphttp:
+    endpoint: http://tempo:3100
+    # endpoint: "http://0.0.0.0:9411"
+    tls:
+      insecure: true
+  
+  loki:
+    endpoint: http://loki:3100/loki/api/v1/push
+    tls:
+      insecure: true
+
+service:
+  pipelines:
+    logs:
+      receivers: [otlp]
+      exporters: [loki]      
+    traces:
+      receivers: [otlp] 
+      exporters: [otlphttp]
+    metrics:
+      receivers: [otlp]
+      processors: [batch]
+      exporters: [prometheus]
