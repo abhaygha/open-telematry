@@ -1,0 +1,17 @@
+---
+metrics:
+  backend: prometheus
+  prometheus:
+    host-port: "localhost:8889"
+
+sampling:
+  default_strategy:
+    type: probabilistic
+    param: 1
+
+storage:
+  type: memory
+
+telemetry:
+  prometheus:
+    host-port: "localhost:8889" 
