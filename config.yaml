@@ -73,7 +73,7 @@ service:
     traces:
       receivers: [otlp, opencensus, jaeger, zipkin]
       processors: [batch]
-      exporters: [debug, otlp]  # ✅ changed from jaeger to otlp
+      exporters: [debug, otlp]  # use otlp to send to Jaeger
 
     metrics:
       receivers: [otlp, opencensus, prometheus, hostmetrics]

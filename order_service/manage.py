@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 import os
-os.environ['DJANGO_SETTINGS_MODULE'] = 'product_backend_service.settings'
+os.environ['DJANGO_SETTINGS_MODULE'] = 'order_service.settings'
 from opentelemetry.instrumentation.django import DjangoInstrumentor
 DjangoInstrumentor().instrument()
 from opentelemetry import trace

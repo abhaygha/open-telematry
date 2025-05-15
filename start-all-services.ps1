@@ -1,0 +1,4 @@
+Start-Process powershell -ArgumentList "cd order_service; `$env:OTEL_EXPORTER_OTLP_ENDPOINT='http://localhost:4319'; python manage.py runserver 127.0.0.1:8001; Read-Host 'Press Enter to exit'"
+Start-Process powershell -ArgumentList "cd payments; `$env:OTEL_EXPORTER_OTLP_ENDPOINT='http://localhost:4319'; python manage.py runserver 127.0.0.1:8002; Read-Host 'Press Enter to exit'"
+Start-Process powershell -ArgumentList "cd product_backend_service; `$env:OTEL_EXPORTER_OTLP_ENDPOINT='http://localhost:4319'; python manage.py runserver 127.0.0.1:8003; Read-Host 'Press Enter to exit'"
+Start-Process powershell -ArgumentList "cd user_backend_service; `$env:OTEL_EXPORTER_OTLP_ENDPOINT='http://localhost:4319'; python manage.py runserver 127.0.0.1:8005; Read-Host 'Press Enter to exit'"
