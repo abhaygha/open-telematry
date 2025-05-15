@@ -1,13 +1,14 @@
+print("START OF SETTINGS FILE")
+DEBUG = True
+ALLOWED_HOSTS = ["localhost", "127.0.0.1", "[::1]"]
+print("DEBUG =", DEBUG)
+print("ALLOWED_HOSTS =", ALLOWED_HOSTS)
+
 import sys
 print("USING SETTINGS FILE:", __file__, file=sys.stderr)
 
-DEBUG = True
-ALLOWED_HOSTS = ["localhost", "127.0.0.1", "[::1]"]
-
 import os
-
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
 SECRET_KEY = 'your-secret-key'
 
 INSTALLED_APPS = [
@@ -30,7 +31,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'order_service.urls'
+ROOT_URLCONF = 'payments.urls'
 
 TEMPLATES = [
     {
@@ -48,7 +49,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'order_service.wsgi.application'
+WSGI_APPLICATION = 'payments.wsgi.application'
 
 DATABASES = {
     'default': {
@@ -63,7 +64,4 @@ USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 
-STATIC_URL = '/static/'
-
-print("DEBUG =", DEBUG)
-print("ALLOWED_HOSTS =", ALLOWED_HOSTS) 
+STATIC_URL = '/static/' 
