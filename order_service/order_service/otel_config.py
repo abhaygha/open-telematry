@@ -5,6 +5,7 @@ from opentelemetry.sdk.resources import SERVICE_NAME, Resource
 from opentelemetry.sdk.trace import TracerProvider
 from opentelemetry.sdk.trace.export import BatchSpanProcessor
 import logging
+from opentelemetry.instrumentation.django import DjangoInstrumentor
 
 def setup_opentelemetry():
     # Define service resource
@@ -12,7 +13,7 @@ def setup_opentelemetry():
 
     # ---- Tracing Setup ----
     otlp_exporter = OTLPSpanExporter(
-        endpoint="localhost:4317",
+        endpoint="localhost:4319",
         insecure=True,
     )
     
@@ -23,6 +24,8 @@ def setup_opentelemetry():
     # Example Log
     logger = logging.getLogger(__name__)
     logger.warning("This is a sample log message from Order Service")
+
+    DjangoInstrumentor().instrument()
 
 if __name__ == "__main__":
     setup_opentelemetry()

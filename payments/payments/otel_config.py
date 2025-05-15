@@ -12,7 +12,7 @@ def setup_opentelemetry():
 
     # ---- Tracing Setup ----
     otlp_exporter = OTLPSpanExporter(
-        endpoint="localhost:4317",
+        endpoint="localhost:4319",
         insecure=True,
     )
     
