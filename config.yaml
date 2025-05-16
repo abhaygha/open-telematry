@@ -54,12 +54,14 @@ processors:
 exporters:
   debug:
     verbosity: detailed
-  prometheus:
-    endpoint: "127.0.0.1:8893"
   otlp:
-    endpoint: "localhost:4317"  # ✅ Jaeger OTLP gRPC port
+    endpoint: localhost:14320  # Jaeger OTLP gRPC port
     tls:
       insecure: true
+  prometheus:
+    endpoint: "127.0.0.1:8893"
+  loki:
+    endpoint: "http://localhost:3100/loki/api/v1/push"
 
 service:
   telemetry:
@@ -71,15 +73,13 @@ service:
 
   pipelines:
     traces:
-      receivers: [otlp, opencensus, jaeger, zipkin]
+      receivers: [otlp]
       processors: [batch]
-      exporters: [debug, otlp]  # use otlp to send to Jaeger
-
+      exporters: [otlp, debug]
     metrics:
-      receivers: [otlp, opencensus, prometheus, hostmetrics]
+      receivers: [otlp]
       processors: [batch]
-      exporters: [debug, prometheus]
-
+      exporters: [prometheus, debug]
     logs:
       receivers: [otlp]
       processors: [batch]

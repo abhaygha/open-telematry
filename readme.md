@@ -6,6 +6,13 @@ jaeger-all-in-one.exe ^
   --query.http-server.host-port=:16686 ^
   --collector.grpc-server.host-port=:14250
 
+  jaeger-all-in-one.exe --collector.otlp.grpc.host-port=:14320
+
+  otelcol-contrib.exe --config=config.yaml
+
+  loki-windows-amd64.exe --config.file=loki-config.yaml
+
+
 # Implementation Plan: Distributed Tracing and Metrics with Django Microservices
 
 ## Overview
